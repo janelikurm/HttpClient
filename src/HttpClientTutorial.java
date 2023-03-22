@@ -20,8 +20,8 @@ public class HttpClientTutorial {
 
             switch (userInput) {
                 case "start" -> startGame();
-                case "end" -> endGame();
-                case "exit" -> exitGame();
+                case "exit" -> endGame();
+                case "shutdown" -> exitGame();
                 default -> doGuess(userInput);
             }
         }
@@ -49,9 +49,9 @@ public class HttpClientTutorial {
         HttpResponse<String> response = doRequest("/guess", userInput);
         if (response.statusCode() == 200) {
             if (response.body().contains("EQUAL")) {
-                System.out.println("You guessed the number! The game is now over. You guessed " + response.body().split(" ")[1] + " times.");
+                System.out.println("You guessed the number! The game is now over.");
             } else {
-                System.out.println("Your number is " + response.body().split(" ")[0] + " than my number!");
+                System.out.println("Your number is " + response.body() + " than my number!");
             }
         } else {
             System.out.println(response.body());
