@@ -19,6 +19,8 @@ public class HttpClientTutorial {
             String userInput = s.nextLine().trim();
 
             switch (userInput) {
+                case "stats" -> getStats();
+                case "status" -> getStatus();
                 case "start" -> startGame();
                 case "exit" -> endGame();
                 case "shutdown" -> exitGame();
@@ -27,8 +29,18 @@ public class HttpClientTutorial {
         }
     }
 
+    public static void getStats() throws IOException, InterruptedException {
+        HttpResponse<String> response = doRequest("/stats", "", "GET");
+        System.out.println(response.body());
+    }
+    public static void getStatus() throws IOException, InterruptedException {
+        HttpResponse<String> response = doRequest("/status", "", "GET");
+        System.out.println(response.body());
+    }
+
+
     public static void startGame() throws IOException, InterruptedException {
-        HttpResponse<String> response = doRequest("/start-game", "");
+        HttpResponse<String> response = doRequest("/start-game", "","POST");
         if (response.statusCode() == 200) {
             System.out.println("Game started! Guess a number from 1 to 100!");
         } else {
@@ -37,7 +49,7 @@ public class HttpClientTutorial {
     }
 
     public static void endGame() throws IOException, InterruptedException {
-        HttpResponse<String> response = doRequest("/end-game", "");
+        HttpResponse<String> response = doRequest("/end-game", "", "POST");
         if (response.statusCode() == 200) {
             System.out.println("Game ended!");
         } else {
@@ -46,7 +58,7 @@ public class HttpClientTutorial {
     }
 
     public static void doGuess(String userInput) throws IOException, InterruptedException {
-        HttpResponse<String> response = doRequest("/guess", userInput);
+        HttpResponse<String> response = doRequest("/guess", userInput, "POST");
         if (response.statusCode() == 200) {
             if (response.body().contains("EQUAL")) {
                 System.out.println("You guessed the number! The game is now over.");
@@ -63,12 +75,12 @@ public class HttpClientTutorial {
         System.exit(0);
     }
 
-    private static HttpResponse<String> doRequest(String endPoint, String body) throws IOException, InterruptedException {
+    private static HttpResponse<String> doRequest(String endPoint, String body, String requestMethod) throws IOException, InterruptedException {
         URI HTTP_SERVER_URI = URI.create("http://localhost:5555" + endPoint);
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .POST(HttpRequest.BodyPublishers.ofString(body))
+                .method(requestMethod, HttpRequest.BodyPublishers.ofString(body))
                 .uri(HTTP_SERVER_URI)
                 .build();
 

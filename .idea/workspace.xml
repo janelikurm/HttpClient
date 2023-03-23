@@ -62,7 +62,7 @@
       <updated>1679397993344</updated>
       <workItem from="1679397994501" duration="11949000" />
       <workItem from="1679468418853" duration="1703000" />
-      <workItem from="1679470725556" duration="15318000" />
+      <workItem from="1679470725556" duration="23146000" />
     </task>
     <task id="LOCAL-00001" summary="Working front end">
       <created>1679408496654</created>
@@ -71,7 +71,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679408496654</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="changed keywords to play with">
+      <created>1679495976762</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1679495976762</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -79,6 +86,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working front end" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working front end" />
+    <MESSAGE value="changed keywords to play with" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed keywords to play with" />
   </component>
 </project>
