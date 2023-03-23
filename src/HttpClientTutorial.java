@@ -61,7 +61,7 @@ public class HttpClientTutorial {
         HttpResponse<String> response = doRequest("/guess", userInput, "POST");
         if (response.statusCode() == 200) {
             if (response.body().contains("EQUAL")) {
-                System.out.println("You guessed the number! The game is now over.");
+                System.out.println("You guessed the number! The game is now over. \n Type start to play again.");
             } else {
                 System.out.println("Your number is " + response.body() + " than my number!");
             }
@@ -76,7 +76,7 @@ public class HttpClientTutorial {
     }
 
     private static HttpResponse<String> doRequest(String endPoint, String body, String requestMethod) throws IOException, InterruptedException {
-        URI HTTP_SERVER_URI = URI.create("http://localhost:5555" + endPoint);
+        URI HTTP_SERVER_URI = URI.create("http://10.10.10.156:5555" + endPoint);
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
