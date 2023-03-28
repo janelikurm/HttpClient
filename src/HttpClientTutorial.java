@@ -1,12 +1,9 @@
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
-import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class HttpClientTutorial {
 
@@ -36,7 +33,7 @@ public class HttpClientTutorial {
 
     private static void getSessionId() throws IOException, InterruptedException {
         HttpResponse<String> response = doRequest("/login", "", "POST");
-        sessionId = response.headers().allValues("sessionId").get(0);
+        sessionId = response.headers().allValues("X-SESSION-ID").get(0);
     }
 
     public static void getStats() throws IOException, InterruptedException {
@@ -53,6 +50,8 @@ public class HttpClientTutorial {
         HttpResponse<String> response = doRequest("/start-game", "", "POST");
         if (response.statusCode() == 200) {
             System.out.println("Game started! Guess a number from 1 to 100!");
+        } else if (response.statusCode() == 401) {
+            offerToStartNewGame();
         } else {
             System.out.println("The game has already been started!");
         }
@@ -62,8 +61,20 @@ public class HttpClientTutorial {
         HttpResponse<String> response = doRequest("/end-game", "", "POST");
         if (response.statusCode() == 200) {
             System.out.println("Game ended!");
+        } else if (response.statusCode() == 401)  {
+            offerToStartNewGame();
         } else {
             System.out.println("There is no active game!  Type 'start' for a new game");
+        }
+    }
+
+    private static void offerToStartNewGame() throws IOException, InterruptedException {
+        System.out.println("Your current game session is expired. Would you like to start new one? (Y/N)");
+        if (s.nextLine().equalsIgnoreCase("Y")) {
+            getSessionId();
+            startGame();
+        } else {
+            shutDownServer();
         }
     }
 
@@ -75,7 +86,9 @@ public class HttpClientTutorial {
             } else {
                 System.out.println("Your number is " + response.body() + " than my number!");
             }
-        } else {
+        } else if (response.statusCode() == 401)  {
+            offerToStartNewGame(); }
+        else {
             System.out.println(response.body());
         }
     }
@@ -92,7 +105,7 @@ public class HttpClientTutorial {
         HttpRequest request = HttpRequest.newBuilder()
                 .method(requestMethod, HttpRequest.BodyPublishers.ofString(body))
                 .uri(HTTP_SERVER_URI)
-                .header("sessionId", sessionId)
+                .header("X-SESSION-ID", sessionId)
                 .build();
 
         return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
