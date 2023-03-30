@@ -12,28 +12,46 @@ public class HttpClientTutorial {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        System.out.println("I'm a powerful AI. I am going to take over the world tomorrow");
+        System.out.println("I'm a powerful AI. I am going to take over the world tomorrow.");
         System.out.println("But first, let's play a numbers game!");
-        getSessionId();
-        System.out.println("Would you like to play? (type 'start') ");
+        System.out.println("Would you like to play? (type 'help' to see all commands) ");
 
         while (true) {
             String userInput = s.nextLine().trim();
-
             switch (userInput) {
+                case "login" -> login();
                 case "stats" -> getStats();
                 case "status" -> getStatus();
                 case "start" -> startGame();
                 case "exit" -> endGame();
                 case "shutdown" -> shutDownServer();
+                case "help" -> getHelp();
                 default -> doGuess(userInput);
             }
         }
     }
 
-    private static void getSessionId() throws IOException, InterruptedException {
-        HttpResponse<String> response = doRequest("/login", "", "POST");
+    private static void getHelp() {
+        System.out.println(
+                """
+                        For navigating Linux Express use following commands :
+                        'login' -> login
+                        'stats' -> getStats
+                        'status' -> getStatus
+                        'start' -> startGame
+                        'exit' -> endGame
+                        'shutdown' -> shutDownServer
+                        'help' -> getHelp
+                        """
+        );
+    }
+
+    private static void login() throws IOException, InterruptedException {
+        System.out.println("Please type your username to log in: ");
+        String username = s.nextLine();
+        HttpResponse<String> response = doRequest("/login", username, "POST");
         sessionId = response.headers().allValues("X-SESSION-ID").get(0);
+        if (response.statusCode() == 200) System.out.println("You are successfully logged in!");
     }
 
     public static void getStats() throws IOException, InterruptedException {
@@ -61,7 +79,7 @@ public class HttpClientTutorial {
         HttpResponse<String> response = doRequest("/end-game", "", "POST");
         if (response.statusCode() == 200) {
             System.out.println("Game ended!");
-        } else if (response.statusCode() == 401)  {
+        } else if (response.statusCode() == 401) {
             offerToStartNewGame();
         } else {
             System.out.println("There is no active game!  Type 'start' for a new game");
@@ -71,7 +89,7 @@ public class HttpClientTutorial {
     private static void offerToStartNewGame() throws IOException, InterruptedException {
         System.out.println("Your current game session is expired. Would you like to start new one? (Y/N)");
         if (s.nextLine().equalsIgnoreCase("Y")) {
-            getSessionId();
+            login();
             startGame();
         } else {
             shutDownServer();
@@ -86,15 +104,15 @@ public class HttpClientTutorial {
             } else {
                 System.out.println("Your number is " + response.body() + " than my number!");
             }
-        } else if (response.statusCode() == 401)  {
-            offerToStartNewGame(); }
-        else {
+        } else if (response.statusCode() == 401) {
+            offerToStartNewGame();
+        } else {
             System.out.println(response.body());
         }
     }
 
     private static void shutDownServer() {
-        System.out.println("Thank you for travelling with lux express!");
+        System.out.println("Thank you for travelling with Linux express!");
         System.exit(0);
     }
 
