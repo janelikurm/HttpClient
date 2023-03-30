@@ -30,23 +30,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.43625",
-    "settings.editor.selected.configurable": "project.propCompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.43625&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="HttpClientTutorial" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="HttpClientTutorial" />
@@ -78,7 +78,8 @@
       <workItem from="1679654302526" duration="70000" />
       <workItem from="1679654383477" duration="395000" />
       <workItem from="1679654787769" duration="607000" />
-      <workItem from="1679657054095" duration="35660000" />
+      <workItem from="1679657054095" duration="39520000" />
+      <workItem from="1680095906900" duration="3840000" />
     </task>
     <task id="LOCAL-00001" summary="Working front end">
       <created>1679408496654</created>
@@ -115,7 +116,21 @@
       <option name="project" value="LOCAL" />
       <updated>1679907302812</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added session expiration, working currently">
+      <created>1680002919362</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1680002919362</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added Username requirement to login function. &#10;Added 'help' command which prints out all available commands.&#10;Changed intro message which is printed out to terminal first. Force player to type 'help' as a first thing.">
+      <created>1680165616014</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1680165616014</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,7 +142,9 @@
     <MESSAGE value="stats added" />
     <MESSAGE value="restart game question added" />
     <MESSAGE value="get sessionId added and used throughout the game" />
-    <option name="LAST_COMMIT_MESSAGE" value="get sessionId added and used throughout the game" />
+    <MESSAGE value="added session expiration, working currently" />
+    <MESSAGE value="added Username requirement to login function. &#10;Added 'help' command which prints out all available commands.&#10;Changed intro message which is printed out to terminal first. Force player to type 'help' as a first thing." />
+    <option name="LAST_COMMIT_MESSAGE" value="added Username requirement to login function. &#10;Added 'help' command which prints out all available commands.&#10;Changed intro message which is printed out to terminal first. Force player to type 'help' as a first thing." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
